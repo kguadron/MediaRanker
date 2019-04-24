@@ -1,0 +1,27 @@
+<h1><%= @work.title %></h1>
+<p>Created by: <%= @work.creator %></p>
+<p>Published: <%= @work.publication_year %></p>
+<p><%= @work.description %></p>
+
+<p>link to homepage</p>
+<p>edit</p>
+<p>upvote</p>
+<p>delete</p>
+
+<h3>## Votes for this <%= @work.category %></h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>a user's name</td>
+      <td> a date </td>
+    </tr>
+  </tbody>
+  
+
