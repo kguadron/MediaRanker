@@ -18,10 +18,17 @@
         <ul>
           <li class="nav-item"><h3><%= link_to "View top media", root_path %></h3></li>
           <li class = "nav-item"><h3><%= link_to "View all media", works_path %></h3></li>
-          <li class = "nav-item"><h3>Add a new work</h3></li>
+          <li class = "nav-item"><h3><%= link_to "Add a new work", new_work_path%></h3></li>
           <li class = "nav-item"><h3>View all users</h3></li>
         </ul>
       </nav>
+
+    <section class="flash">
+      <% flash.each do |name, message| %>
+        <div class="<%= name %>"><%= message %></div>
+      <% end %>
+    </section>
+
     </header>
     <main>
       <%= yield %>
