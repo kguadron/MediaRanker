@@ -7,9 +7,27 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= favicon_link_tag asset_path('owl.jpg') %>
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <h1><%= link_to "Media Ranker", root_path %> | Ranking the Best of Everything</h3>
+      <nav>
+        <ul>
+          <li class="nav-item"><h3><%= link_to "View top media", root_path %></h3></li>
+          <li class = "nav-item"><h3><%= link_to "View all media", works_path %></h3></li>
+          <li class = "nav-item"><h3>Add a new work</h3></li>
+          <li class = "nav-item"><h3>View all users</h3></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+    </footer>
   </body>
 </html>
+
