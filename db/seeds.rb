@@ -20,3 +20,12 @@ csv.each do |row|
   t.save
   puts "#{t.title} saved"
 end
+
+csv_text = File.read(Rails.root.join('db', 'user_seeds.csv'))
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+csv.each do |row|
+  t = User.new
+  t.username = row['username']
+  t.save
+  puts "#{t.username} saved"
+end

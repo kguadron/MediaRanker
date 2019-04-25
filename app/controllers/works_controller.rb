@@ -5,8 +5,6 @@ class WorksController < ApplicationController
     @works = Work.all
   end
 
-  # def show ; end
-
   def new
     @work = Work.new
   end
@@ -27,6 +25,7 @@ class WorksController < ApplicationController
     end
   end
 
+  # def show ; end
   # def edit ; end
 
   def update
