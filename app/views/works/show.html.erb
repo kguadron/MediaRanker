@@ -3,10 +3,10 @@
 <p>Published: <%= @work.publication_year %></p>
 <p><%= @work.description %></p>
 
-<p>link to homepage</p>
-<p>edit</p>
+<p><%= link_to "Back to media ranks", root_path %></p>
+<p><%= link_to "Edit", edit_work_path%></p>
 <p>upvote</p>
-<p>delete</p>
+<p><%= link_to "Delete", works_path(@work), method: :delete, data: { confirm: "You sure though?" }%></p>
 
 <h3>## Votes for this <%= @work.category %></h3>
 
