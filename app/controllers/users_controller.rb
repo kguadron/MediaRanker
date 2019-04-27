@@ -35,29 +35,6 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
-  # def new
-  #   @user = User.new
-  # end
-
-  # def create
-  #   @user = User.new(user_params)
-
-  #   successful = @user.save
-
-  #   if successful
-  #     flash[:status] = :success
-  #     flash[:message] = "User added successfully"
-  #     redirect_to user_path(@user.id)
-  #   else
-  #     flash.now[:status] = :error
-  #     flash.now[:message] = "User could not be added/logged in."
-  #     render :new, status: :bad_request
-  #   end
-  # end
-
-  # def show ; end
-  # def edit ; end
-
   private
 
   def user_params
