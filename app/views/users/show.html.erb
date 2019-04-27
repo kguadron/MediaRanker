@@ -1,0 +1,24 @@
+<h1>User Summary: <%= @user.username %></h1>
+<p>Joined site <%= @user.created_at.strftime("%B %d,%Y") %></p>
+<h2>Votes</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Media Title</th>
+      <th>Created By</th>
+      <th>Published</th>
+      <th>Category</th>
+      <th>Voted on</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>a work's name</td>
+      <td> a date </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><%= link_to "See all users", users_path %></p>
+<p><%= link_to "Back to Media list", works_path %></p>

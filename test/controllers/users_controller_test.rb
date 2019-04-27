@@ -17,23 +17,70 @@ describe UsersController do
     end
   end
 
-  # describe "show" do
-  #   it "returns a 404 status code if the user doesn't exist" do
-  #     user_id = "FAKE ID"
+  describe "show" do
+    it "returns a 404 status code if the user doesn't exist" do
+      user_id = "FAKE ID"
 
-  #     get user_path(user_id)
+      get user_path(user_id)
 
-  #     must_respond_with :not_found
-  #   end
+      must_respond_with :not_found
+    end
 
-  #   it "works for a User instance that exists" do
-  #     user = users(:one)
+    it "works for a User instance that exists" do
+      user = users(:one)
       
-  #     get user_path(user)
+      get user_path(user)
 
-  #     must_respond_with :ok
-  #   end
-  # end
+      must_respond_with :ok
+    end
+  end
+
+  describe "login form" do
+    it "can render login_form" do
+      get login_path
+      must_respond_with :success
+    end
+  end
+
+  describe "login" do
+    it "can login user" do
+      expect(perform_login).must_equal users(:one)
+    end
+
+    it "can find an existing user and flash success message" do
+      user_input = {
+        "user": {
+          username: users(:one).username,
+        },
+      }
+
+      expect {
+        post login_path, params: user_input
+      }.wont_change "User.count"
+
+      expect(flash[:message]).must_equal "Successfully logged in as user #{users(:one).username}"
+      must_respond_with :redirect
+    end
+
+    it "can create a new user and flash success message" do
+      user_input = {
+        "user": {
+          username: "newuser"
+        },
+      }
+
+      expect {
+        post login_path, params: user_input
+      }.must_change "User.count", +1
+
+      expect(flash[:message]).must_equal "Successfully logged in as user newuser"
+      must_respond_with :redirect
+    end
+  end
+    
+  describe "logout" do
+end
+end
 
   # describe "new" do
   #   it "retruns status code 200" do
@@ -61,7 +108,7 @@ describe UsersController do
 
   #     check_flash
 
-  #     expect(user.username).must_equal work_data[:user][:username]
+  #     expect(user.username).must_equal user_data[:user][:username]
   #   end
 
   #   it "sends back bad_request if no user data is sent" do
@@ -80,7 +127,6 @@ describe UsersController do
 
   #     check_flash(:error)
   #   end
-  # end
 
   # describe "edit" do
   #   it "responds with OK for an existing user" do
@@ -165,4 +211,3 @@ describe UsersController do
   #     must_respond_with :not_found
   #   end
   # end
-end
