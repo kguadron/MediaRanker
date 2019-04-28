@@ -5,10 +5,10 @@
 
 <p><%= link_to "Back to media ranks", root_path %></p>
 <p><%= link_to "Edit", edit_work_path%></p>
-<p>upvote</p>
+<p><%= link_to "Upvote", work_votes_path(@work), method: "post" %></p>
 <p><%= link_to "Delete", works_path(@work), method: :delete, data: { confirm: "You sure though?" }%></p>
 
-<h3>## Votes for this <%= @work.category %></h3>
+<h3><%= @work.votes.length %> Votes for this <%= @work.category.capitalize %></h3>
 
 <table>
   <thead>
@@ -18,10 +18,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>a user's name</td>
-      <td> a date </td>
-    </tr>
+    <% @work.votes.each do |vote| %>
+      <tr>
+        <td><%= link_to User.find(vote.user_id).username, user_path(User.find(vote.user_id)) %></td>
+        <td><%= vote.created_at.strftime("%B %d,%Y")%></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
   

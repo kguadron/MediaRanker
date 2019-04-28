@@ -10,21 +10,27 @@ class VotesController < ApplicationController
         if work_votes.include?(vote)
           flash[:status] = :error
           flash[:message] = "You have already voted for this media"
-          redirect_to work_path(work.id)
+          redirect_back(fallback_location: root_path)
           return
         end
       end
     
-      vote = Vote.create(
+      vote = Vote.new(
         work_id: params[:work_id],
         user_id: session[:user_id],
       )
-    
-      user.votes << vote
-      work.votes << vote
-      flash[:success] = "Successfully upvoted!"
+      
+      if vote.save
+        flash[:success] = "Successfully upvoted!"
+        redirect_back(fallback_location: root_path)
+      
+        user.votes << vote
+        work.votes << vote
+      end
+
     else
       flash[:error] = "A problem occurred: You must login to do that"
+      redirect_back(fallback_location: root_path)
     end
   end
 end

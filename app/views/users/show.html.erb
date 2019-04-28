@@ -13,10 +13,15 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>a work's name</td>
-      <td> a date </td>
-    </tr>
+    <% @user.votes.each do |vote| %>
+      <tr>
+        <td><%= link_to Work.find(vote.work_id).title, work_path(Work.find(vote.work_id))%></td>
+        <td><%= Work.find(vote.work_id).creator %></td>
+        <td><%= Work.find(vote.work_id).publication_year %></td>
+        <td><%= Work.find(vote.work_id).category.capitalize %></td>
+        <td><%= vote.created_at.strftime("%B %d,%Y")%></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 
