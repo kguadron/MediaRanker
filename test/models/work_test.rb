@@ -65,6 +65,11 @@ describe Work do
       expect(Work.media_spotlight).must_be_instance_of Work
       expect(Work.media_spotlight.id).must_equal work2.id
     end
+
+    it "returns first work if none of the works have the most votes" do
+      expect(Work.media_spotlight).must_be_instance_of Work
+      expect(Work.media_spotlight.id).must_equal Work.first.id
+    end
   end
 
   describe "top ten" do
