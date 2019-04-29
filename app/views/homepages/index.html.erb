@@ -1,5 +1,7 @@
-<h2>Media Spotlight: <%= link_to Work.media_spotlight.title, work_path(Work.media_spotlight.id), class: "spotlight-link" %> <span class="spotlight-author"> by <%= Work.media_spotlight.creator %></span></h2>
+<h2><span class="spotlight-prefix">Media Spotlight:</span> <%= link_to Work.media_spotlight.title, work_path(Work.media_spotlight.id), class: "spotlight-link" %> <span class="spotlight-author"> by <%= Work.media_spotlight.creator %></span></h2>
 <p><%= Work.media_spotlight.vote_ids.length %> votes - <%= Work.media_spotlight.description %></p>
+
+<hr class="root-hr">
 
 <section class="top-ten-container">
   <section class="top-ten__list-container">
@@ -17,7 +19,6 @@
     <% end %>
   </section>
 
-  <section class="top-ten-container">
   <section class="top-ten__list-container">
     <h2 class="top-ten__header">Top Books</h2>
     <% Work.top_ten("book").each do |work| %>
@@ -33,7 +34,7 @@
     <% end %>
   </section>
 
-  <section class="top-ten-container">
+
   <section class="top-ten__list-container">
     <h2 class="top-ten__header">Top Albums</h2>
     <% Work.top_ten("album").each do |work| %>
@@ -48,3 +49,4 @@
       </ul>
     <% end %>
   </section>
+</section>

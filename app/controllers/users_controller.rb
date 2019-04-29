@@ -20,7 +20,6 @@ class UsersController < ApplicationController
 
     session[:user_id] = user.id
 
-    flash[:status] = :success
     flash[:message] = "Successfully logged in as user #{user.username}"
 
     redirect_to root_path
@@ -29,7 +28,6 @@ class UsersController < ApplicationController
   def logout
     session[:user_id] = nil
 
-    flash[:status] = :success
     flash[:message] = "Successfully logged out"
 
     redirect_to root_path
