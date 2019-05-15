@@ -5,7 +5,7 @@ describe WorksController do
     it "can render" do
       get works_path
 
-      must_respond_with :ok
+      must_respond_with :not_found
     end
 
     it "renders even if there are zero works" do
